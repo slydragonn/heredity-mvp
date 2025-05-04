@@ -74,7 +74,7 @@ Para iniciar la aplicación frontend:
 npm run dev
 ```
 
-### Paso a paso para lanzar la APP en local
+## Paso a paso para lanzar la APP en local
 
 1. Dar click en el botón de "Comenzar Ahora"
 2. Ingresar en MetaMask(Se debe tener una cuenta creada)
