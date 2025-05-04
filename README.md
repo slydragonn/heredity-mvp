@@ -53,12 +53,12 @@ Para iniciar un nodo local de Hardhat:
 ```bash
 npm run node
 ```
-
+**No se debe cerrar la consola hasta finalizada la sesión**
 
 
 ### Desplegar los contratos localmente
 
-Para desplegar los contratos en el nodo local:
+Para desplegar los contratos en el nodo local ejecutar el comando en una consola nueva:
 
 ```bash
 npm run deploy:local
@@ -89,3 +89,9 @@ npm run dev
 ## Licencia
 
 Este proyecto no especifica una licencia. Por favor, consulta con los autores antes de utilizarlo en producción.
+
+## Autores
+- [Juan Camilo Alzate Bedoya](https://github.com/11JuanK11)
+- [Sara Castañeda Echeverri](https://github.com/Saraccee25)
+- [Alejandro Londoño Gomez](https://github.com/slydragonn)
+- [Sara Carolina Sánchez Arroyave](https://github.com/Caro-26S)
