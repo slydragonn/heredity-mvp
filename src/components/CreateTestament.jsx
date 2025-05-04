@@ -150,8 +150,8 @@ const CreateTestament = ({ contract, account }) => {
               <input
                 type="number"
                 className={styles.input}
-                placeholder="0.0"
-                min="0"
+                placeholder="1.0"
+                min="1"
                 step="0.001"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
