@@ -125,13 +125,6 @@ function Dashboard() {
           </div>
         )}
       </main>
-      
-      <footer className="bg-gray-800 text-white py-4 text-center">
-        <div className="container mx-auto">
-          <p>Heredity - Testamento Digital en Avalanche</p>
-          <p className="text-sm text-gray-400">© {new Date().getFullYear()} - MVP para Hackathon</p>
-        </div>
-      </footer>
     </div>
   );
 }

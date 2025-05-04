@@ -15,7 +15,7 @@ const Hero = () => {
             condiciones específicas, garantizando que tus deseos se cumplan de forma segura y transparente.
           </p>
           <div className={styles.buttons}>
-          <Link to="/auth" className={styles.primaryButton}>
+          <Link to="/dashboard" className={styles.primaryButton}>
             Comenzar Ahora <ArrowRight size={16} />
           </Link>
           </div>
