@@ -11,25 +11,26 @@ const Navbar = ({ account, connectWallet, activeSection, setActiveSection }) => 
   return (
     <nav className={styles.navbar}>
       <div className="container mx-auto px-4">
-        <div className="flex justify-center enter py-4">
+        <div className="flex justify-center items-center py-4">
           
           {account && (
             <div className="hidden md:flex space-x-6">
               <button 
                 onClick={() => setActiveSection('create')}
-                className={`font-medium ${activeSection === 'create' ? 'text-avalanche border-b-2 border-avalanche' : 'text-gray-500 hover:text-avalanche'}`}
+                className={`font-medium ${activeSection === 'create' ? 'text-sky-500 border-b-2 border-sky-500' : 'text-gray-500 hover:text-sky-500'}`}
               >
                 Crear Testamento
               </button>
               <button 
                 onClick={() => setActiveSection('manage')}
-                className={`font-medium ${activeSection === 'manage' ? 'text-avalanche border-b-2 border-avalanche' : 'text-gray-500 hover:text-avalanche'}`}
+                className={`font-medium ${activeSection === 'manage' ? 'text-sky-500 border-b-2 border-sky-500' : 'text-gray-500 hover:text-sky-500'}`}
               >
                 Mis Testamentos
               </button>
               <button 
                 onClick={() => setActiveSection('inheritances')}
-                className={`font-medium ${activeSection === 'inheritances' ? 'text-avalanche border-b-2 border-avalanche' : 'text-gray-500 hover:text-avalanche'}`}
+                style={{ paddingRight: '17px' }}
+                className={`font-medium ${activeSection === 'inheritances' ? 'text-sky-500 border-b-2 border-sky-500' : 'text-gray-500 hover:text-sky-500'}`}
               >
                 Mis Herencias
               </button>
@@ -62,26 +63,25 @@ const Navbar = ({ account, connectWallet, activeSection, setActiveSection }) => 
           <div className="md:hidden pb-4 flex justify-center space-x-4">
             <button 
               onClick={() => setActiveSection('create')}
-              className={`text-sm font-medium ${activeSection === 'create' ? 'text-avalanche' : 'text-gray-500'}`}
+              className={`text-sm font-medium ${activeSection === 'create' ? 'text-sky-500' : 'text-gray-500 hover:text-sky-500'}`}
             >
               Crear
             </button>
             <button 
               onClick={() => setActiveSection('manage')}
-              className={`text-sm font-medium ${activeSection === 'manage' ? 'text-avalanche' : 'text-gray-500'}`}
+              className={`text-sm font-medium ${activeSection === 'manage' ? 'text-sky-500' : 'text-gray-500 hover:text-sky-500'}`}
             >
               Mis Testamentos
             </button>
             <button 
               onClick={() => setActiveSection('inheritances')}
-              className={`text-sm font-medium ${activeSection === 'inheritances' ? 'text-avalanche' : 'text-gray-500'}`}
+              className={`text-sm font-medium ${activeSection === 'inheritances' ? 'text-sky-500' : 'text-gray-500 hover:text-sky-500'}`}
             >
               Mis Herencias
             </button>
           </div>
         )}
       </div>
-      
     </nav>
   );
 };

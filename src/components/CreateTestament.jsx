@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import toast from 'react-hot-toast';
+import { Calendar, DollarSign, User, MessageSquare, Clock, ArrowRight } from 'lucide-react';
+import styles from './CreateTestament.module.css';
 
 const CreateTestament = ({ contract, account }) => {
   const [name, setName] = useState('');
@@ -70,16 +72,19 @@ const CreateTestament = ({ contract, account }) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="card">
-        <h2 className="text-2xl font-bold mb-6">Crear Nuevo Testamento</h2>
+    <div className={styles.container}>
+      <div className={styles.formCard}>
+        <h2 className={styles.formTitle}>Crear Nuevo Testamento</h2>
         
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Nombre del Testamento</label>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              <User size={18} className={styles.labelIcon} />
+              Nombre del Testamento
+            </label>
             <input
               type="text"
-              className="input-field"
+              className={styles.input}
               placeholder="Ej: Testamento para mi hijo"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -87,11 +92,14 @@ const CreateTestament = ({ contract, account }) => {
             />
           </div>
           
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Dirección del Beneficiario</label>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              <User size={18} className={styles.labelIcon} />
+              Dirección del Beneficiario
+            </label>
             <input
               type="text"
-              className="input-field"
+              className={styles.input}
               placeholder="0x..."
               value={beneficiary}
               onChange={(e) => setBeneficiary(e.target.value)}
@@ -99,64 +107,74 @@ const CreateTestament = ({ contract, account }) => {
             />
           </div>
           
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Mensaje Encriptado (Opcional)</label>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              <MessageSquare size={18} className={styles.labelIcon} />
+              Mensaje Encriptado (Opcional)
+            </label>
             <textarea
-              className="input-field h-32"
+              className={`${styles.input} ${styles.textarea}`}
               placeholder="Mensaje para tu beneficiario..."
               value={encryptedData}
               onChange={(e) => setEncryptedData(e.target.value)}
             ></textarea>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className={styles.helperText}>
               Este mensaje se almacenará en la blockchain y será visible para tu beneficiario.
             </p>
           </div>
           
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Fecha Límite</label>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              <Calendar size={18} className={styles.labelIcon} />
+              Fecha Límite
+            </label>
             <input
               type="date"
-              className="input-field"
+              className={styles.input}
               min={getTomorrowDate()}
               value={deadlineDate}
               onChange={(e) => setDeadlineDate(e.target.value)}
               required
             />
-            <p className="text-sm text-gray-500 mt-1">
+            <p className={styles.helperText}>
               A partir de esta fecha, tu beneficiario podrá reclamar la herencia.
             </p>
           </div>
           
-          <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2">Cantidad de AVAX a Depositar</label>
-            <div className="relative">
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              <DollarSign size={18} className={styles.labelIcon} />
+              Cantidad de AVAX a Depositar
+            </label>
+            <div className={styles.inputWithSuffix}>
               <input
                 type="number"
-                className="input-field pr-12"
+                className={styles.input}
                 placeholder="0.0"
                 min="0"
                 step="0.001"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <span className="text-gray-500">AVAX</span>
-              </div>
+              <span className={styles.inputSuffix}>AVAX</span>
             </div>
           </div>
           
           <button
             type="submit"
-            className="btn btn-primary w-full"
+            className={styles.submitButton}
             disabled={isSubmitting}
           >
             {isSubmitting ? (
-              <div className="flex justify-center items-center">
-                <div className="animate-spin h-5 w-5 border-2 border-white rounded-full border-t-transparent mr-2"></div>
+              <div className={styles.loadingState}>
+                <div className={styles.spinner}></div>
                 Procesando...
               </div>
             ) : (
-              'Crear Testamento'
+              <>
+                Crear Testamento
+                <ArrowRight size={18} />
+              </>
             )}
           </button>
         </form>
