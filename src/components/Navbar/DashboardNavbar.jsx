@@ -11,10 +11,7 @@ const Navbar = ({ account, connectWallet, activeSection, setActiveSection }) => 
   return (
     <nav className={styles.navbar}>
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
-          <div className="flex items-center">
-            <Logo />
-          </div>
+        <div className="flex justify-center enter py-4">
           
           {account && (
             <div className="hidden md:flex space-x-6">
