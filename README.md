@@ -81,10 +81,10 @@ npm run dev
 3. En MetaMask, dar click en el boton de la esquina superior izquierda "Ethereum Mainnet"
 4. Luego, hacer click en el botón "Add a custom network"
 5. Ingresar los campos pedidos, y dar en guardar:
-   5.1. Nombre de la red: avalanchelocal
-   5.2. Default RCP URL: http://127.0.0.1:8545
-   5.3. Identificador de cadena: Id de la cadena
-   5.4. Simbolo de moneda: AVAX
+   - Nombre de la red: avalanchelocal
+   - Default RCP URL: http://127.0.0.1:8545
+   - Identificador de cadena: Id de la cadena
+   - Simbolo de moneda: AVAX
 7. Volver a ingresar a "Ethereum Mainnet" y seleccionar la red de prueba local "avalanchelocal"
 8. En la página, dar click a "Conectar Wallet" ó "Conectar Wallet para Comenzar"
 9. Agrega una cuenta de un nodo local de prueba con su clave privada
