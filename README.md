@@ -1,7 +1,3 @@
-Claro, a continuación te presento un archivo `README.md` en español para el repositorio [heredity-mvp](https://github.com/slydragonn/heredity-mvp), basado en la información disponible en el repositorio:
-
----
-
 # Heredity MVP
 
 **Heredity MVP** es una aplicación descentralizada (dApp) que utiliza contratos inteligentes escritos en Solidity y una interfaz web construida con Vite y Tailwind CSS. Este proyecto permite compilar, desplegar y probar contratos inteligentes localmente, así como interactuar con ellos a través de una interfaz de usuario intuitiva.
