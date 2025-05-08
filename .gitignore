@@ -2,8 +2,10 @@ node_modules
 .env
 
 # Hardhat files
-/cache
-/artifacts
+cache
+src/artifacts
+
+!src/artifacts/contracts/Heredity.sol/Heredity.json
 
 # TypeChain files
 /typechain

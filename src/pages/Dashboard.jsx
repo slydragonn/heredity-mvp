@@ -7,6 +7,8 @@ import CreateTestament from '../components/CreateTestament';
 import ManageTestaments from '../components/ManageTestaments';
 import MyInheritances from '../components/MyInheritances';
 import HeredityArtifact from '../artifacts/contracts/Heredity.sol/Heredity.json';
+import { avalancheFuji } from '../config/networks';
+
 
 function Dashboard() {
   const [account, setAccount] = useState('');
@@ -16,6 +18,8 @@ function Dashboard() {
   const [activeSection, setActiveSection] = useState('create');
   const [loading, setLoading] = useState(true);
 
+  const CONTRACT_ADDRESS = "0xf2e12956967eE39f548871027B3A6C29BDC07063";
+
   const connectWallet = async () => {
     try {
       if (window.ethereum) {
@@ -24,20 +28,21 @@ function Dashboard() {
         const signer = provider.getSigner();
         const address = await signer.getAddress();
         
+
         const networkId = (await provider.getNetwork()).chainId;
-        // Verificamos si estamos en Avalanche C-Chain local (chainId: 43114)
-        if (networkId !== 43114 && networkId !== 43113) {
-          toast.error("Por favor, conecta con la red de Avalanche C-Chain");
-          return;
+        if (networkId !== 43113) {
+          try {
+            await switchToAvalancheFuji();
+          } catch (error) {
+            toast.error("Por favor, conecta con la red de Avalanche C-Chain");
+          }
         }
 
         setAccount(address);
         setSigner(signer);
         setProvider(provider);
         
-        // Buscar el contrato desplegado
-        // En un MVP, suponemos que ya tenemos la dirección del contrato
-        const contractAddress = localStorage.getItem('contractAddress') || '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // Dirección por defecto en hardhat
+        const contractAddress = CONTRACT_ADDRESS || '';
         const contract = new ethers.Contract(contractAddress, HeredityArtifact.abi, signer);
         setContract(contract);
         
@@ -51,6 +56,28 @@ function Dashboard() {
       toast.error("Error al conectar wallet");
     }
   };
+
+  async function switchToAvalancheFuji() {
+    try {
+      // Intenta cambiar a la red Fuji
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: avalancheFuji.chainId }]
+      });
+    } catch (switchError) {
+      // Si la red no está agregada, agrégala
+      if (switchError.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [avalancheFuji]
+          });
+        } catch (addError) {
+          console.error("Error al agregar la red:", addError);
+        }
+      }
+    }
+  }
 
   useEffect(() => {
     const checkConnection = async () => {
