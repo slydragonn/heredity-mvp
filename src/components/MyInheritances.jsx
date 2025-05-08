@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import toast from 'react-hot-toast';
+import { format } from 'date-fns';
 
 const MyInheritances = ({ contract, account }) => {
   const [inheritances, setInheritances] = useState([]);
@@ -79,37 +80,63 @@ const MyInheritances = ({ contract, account }) => {
 
   // Formatear fecha para mostrar
   const formatDate = (date) => {
-    return date.toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    return format(date, "yyyy-MM-dd'T'HH:mm")
   };
 
   // Calcular tiempo restante
   const getTimeRemaining = (deadline) => {
     const now = new Date();
-    const diff = deadline - now;
-    
+    let diff = deadline - now;
+  
     if (diff <= 0) {
       return "Disponible ahora";
     }
-    
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    
-    if (days > 365) {
-      const years = Math.floor(days / 365);
-      return `${years} ${years === 1 ? 'año' : 'años'} restantes`;
-    } else if (days > 30) {
-      const months = Math.floor(days / 30);
-      return `${months} ${months === 1 ? 'mes' : 'meses'} restantes`;
-    } else if (days > 0) {
-      return `${days} ${days === 1 ? 'día' : 'días'} restantes`;
-    } else {
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      return `${hours} ${hours === 1 ? 'hora' : 'horas'} restantes`;
-    }
+  
+    // Constantes en milisegundos
+    const MS = {
+      segundo: 1000,
+      minuto: 1000 * 60,
+      hora:   1000 * 60 * 60,
+      día:    1000 * 60 * 60 * 24,
+      mes:    1000 * 60 * 60 * 24 * 30,
+      año:    1000 * 60 * 60 * 24 * 365,
+    };
+  
+    // Cálculo de cada unidad
+    const years   = Math.floor(diff / MS.año);
+    diff -= years * MS.año;
+  
+    const months  = Math.floor(diff / MS.mes);
+    diff -= months * MS.mes;
+  
+    const days    = Math.floor(diff / MS.día);
+    diff -= days * MS.día;
+  
+    const hours   = Math.floor(diff / MS.hora);
+    diff -= hours * MS.hora;
+  
+    const minutes = Math.floor(diff / MS.minuto);
+    diff -= minutes * MS.minuto;
+  
+    const seconds = Math.floor(diff / MS.segundo);
+  
+    // Función de ayuda para pluralizar
+    const fmt = (value, singular) =>
+      value > 0 ? `${value} ${singular}${value === 1 ? "" : "s"}` : null;
+  
+    // Montamos el array de segmentos que no sean nulos
+    const segments = [
+      fmt(years,   "año"),
+      fmt(months,  "mes"),
+      fmt(days,    "día"),
+      fmt(hours,   "hora"),
+      fmt(minutes, "minuto"),
+      fmt(seconds, "segundo"),
+    ].filter(Boolean);
+  
+    return segments.join(", ") + " restantes";
   };
+  
 
   return (
     <div className="max-w-4xl mx-auto">

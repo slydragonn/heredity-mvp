@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import toast from 'react-hot-toast';
+import { format } from 'date-fns';
 
 const ManageTestaments = ({ contract, account }) => {
   const [testaments, setTestaments] = useState([]);
@@ -51,11 +52,7 @@ const ManageTestaments = ({ contract, account }) => {
 
   // Formatear fecha para mostrar
   const formatDate = (date) => {
-    return date.toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    return format(date, "yyyy-MM-dd'T'HH:mm")
   };
 
   return (

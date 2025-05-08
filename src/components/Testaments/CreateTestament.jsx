@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 import toast from 'react-hot-toast';
 import { Calendar, DollarSign, User, MessageSquare, Clock, ArrowRight } from 'lucide-react';
 import styles from './CreateTestament.module.css';
+import { addMinutes, format } from "date-fns";
 
 const CreateTestament = ({ contract, account }) => {
   const [name, setName] = useState('');
@@ -64,12 +65,13 @@ const CreateTestament = ({ contract, account }) => {
     }
   };
 
-  // Obtener fecha mínima (mañana)
-  const getTomorrowDate = () => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow.toISOString().split('T')[0];
+  const getMinDateTimeLocal = () => {
+    return format(
+      addMinutes(new Date(), 30),
+      "yyyy-MM-dd'T'HH:mm"
+    );
   };
+  console.log(getMinDateTimeLocal());
 
   return (
     <div className={styles.container}>
@@ -129,9 +131,9 @@ const CreateTestament = ({ contract, account }) => {
               Fecha Límite
             </label>
             <input
-              type="date"
+              type="datetime-local"
               className={styles.input}
-              min={getTomorrowDate()}
+              min={getMinDateTimeLocal()}
               value={deadlineDate}
               onChange={(e) => setDeadlineDate(e.target.value)}
               required
