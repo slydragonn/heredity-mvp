@@ -2,6 +2,11 @@
 
 **Heredity MVP** es una aplicación descentralizada (dApp) que utiliza contratos inteligentes escritos en Solidity y una interfaz web construida con Vite y Tailwind CSS. Este proyecto permite compilar, desplegar y probar contratos inteligentes localmente, así como interactuar con ellos a través de una interfaz de usuario intuitiva.
 
+Demo:
+<video width="680" height="400" controls>
+  <source src="media/heredity-demo.mp4" type="video/mp4">
+</video>
+
 ## Características
 
 * Contratos inteligentes desarrollados en Solidity.
